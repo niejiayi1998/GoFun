@@ -46,4 +46,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
 
     implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 }

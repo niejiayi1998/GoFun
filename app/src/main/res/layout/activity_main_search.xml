@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/button"
@@ -28,54 +29,74 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hiking"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:text="Hiking" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sports"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:text="Sports" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amusement Park"/>
+                android:text="Amusement Park" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Arts"
-                android:layout_marginRight="15dp" />
+                android:layout_marginRight="15dp"
+                android:text="Arts" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scenic View"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:text="Scenic View" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Entertainment"/>
+                android:text="Entertainment" />
 
         </LinearLayout>
 
 
-
     </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/tv_currLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+    <Button
+        android:id="@+id/btn_updateLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="update"
+        app:layout_constraintStart_toEndOf="@+id/tv_currLocation"
+        app:layout_constraintTop_toTopOf="@id/tv_currLocation"
+        app:layout_constraintBottom_toBottomOf="@id/tv_currLocation"
+        android:layout_marginLeft="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
