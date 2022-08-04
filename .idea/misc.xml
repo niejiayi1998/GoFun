@@ -3,16 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_location_detail.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_main_search.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/activity_search_display.xml" value="0.221875" />
+        <entry key="app/src/main/res/layout/activity_search_display.xml" value="0.2636688232421875" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.28971308607417773" />
         <entry key="app/src/main/res/layout/bar_layout.xml" value="0.221875" />
-        <entry key="app/src/main/res/layout/fragment_event_create.xml" value="0.31875" />
-        <entry key="app/src/main/res/layout/fragment_event_joined.xml" value="0.31875" />
-        <entry key="app/src/main/res/layout/location_card_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/event_create_card_item.xml" value="0.30010681152343754" />
+        <entry key="app/src/main/res/layout/event_joined_card_item.xml" value="0.24230072463768115" />
+        <entry key="app/src/main/res/layout/fragment_event_create.xml" value="0.4071557971014493" />
+        <entry key="app/src/main/res/layout/fragment_event_joined.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.4071557971014493" />
+        <entry key="app/src/main/res/layout/location_card_item.xml" value="0.1" />
       </map>
     </option>
   </component>
