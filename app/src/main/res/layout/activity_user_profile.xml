@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_userImage" />
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager2"
         android:layout_width="411dp"
         android:layout_height="472dp"

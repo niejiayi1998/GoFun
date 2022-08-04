@@ -1,6 +1,5 @@
 package edu.neu.madcourse.numad22su_team11.Model;
 
-import java.util.ArrayList;
 
 public class Location {
     private String name;
@@ -9,16 +8,18 @@ public class Location {
     private int numOfLike;
     private double latitude;
     private double longitude;
+    private String locationId;
 
     public Location() {}
 
-    public Location(String name, String imgUrl, int category, int numOfLike, double latitude, double longitude) {
+    public Location(String name, String imgUrl, int category, int numOfLike, double latitude, double longitude, String locationId) {
         this.name = name;
         this.imgUrl = imgUrl;
         this.category = category;
         this.numOfLike = numOfLike;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.locationId = locationId;
     }
 
     public String getName() {
@@ -69,11 +70,11 @@ public class Location {
         this.longitude = longitude;
     }
 
-//    public ArrayList<Event> getEvents() {
-//        return events;
-//    }
-//
-//    public void setEvents(ArrayList<Event> events) {
-//        this.events = events;
-//    }
+    public String getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(String locationId) {
+        this.locationId = locationId;
+    }
 }
