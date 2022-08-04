@@ -15,37 +15,50 @@
         <com.google.android.material.chip.ChipGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:singleSelection="true">
+            app:singleSelection="true"
+            app:singleLine="true">
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hiking" />
+                android:text="All"
+                android:onClick="allFilterTapped"/>
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sports" />
+                android:text="Hiking"
+                android:onClick="hikingFilterTapped"/>
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amusement Park" />
+                android:text="Sports"
+                android:onClick="sportsFilterTapped"/>
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Arts" />
+                android:text="Amusement Park"
+                android:onClick="amusementFilterTapped"/>
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scenic View" />
+                android:text="Arts"
+                android:onClick="artsFilterTapped"/>
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Entertainment" />
+                android:text="Scenic View"
+                android:onClick="scenicFilterTapped"/>
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entertainment"
+                android:onClick="entertainmentFilterTapped"/>
 
         </com.google.android.material.chip.ChipGroup>
 

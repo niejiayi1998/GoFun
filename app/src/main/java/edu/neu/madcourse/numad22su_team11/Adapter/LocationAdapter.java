@@ -47,17 +47,20 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
         public TextView name;
+        public TextView numOfLike;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             image = itemView.findViewById(R.id.locationImage);
             name = itemView.findViewById(R.id.locationName);
+            numOfLike = itemView.findViewById(R.id.tv_numOfLike);
         }
 
         private void bindThisData (Location locationToBind) {
             Picasso.get().load(locationToBind.getImgUrl()).into(image);
             name.setText(locationToBind.getName());
+            numOfLike.setText(String.valueOf(locationToBind.getNumOfLike()));
         }
     }
 }
