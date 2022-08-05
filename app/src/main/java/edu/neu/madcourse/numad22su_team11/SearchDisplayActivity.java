@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,11 +27,21 @@ public class SearchDisplayActivity extends AppCompatActivity {
     private List<Location> locationList;
     private LocationAdapter locationAdapter;
     private int selectedFilter = -1;
+    private double latitude;
+    private double longitude;
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_display);
+
+        intent = getIntent();
+        selectedFilter = intent.getIntExtra("selectedFilter", -1);
+        latitude = intent.getDoubleExtra("latitude", 37.3387);
+        longitude = intent.getDoubleExtra("longitude", -121.8853);
+
 
         recyclerView = findViewById(R.id.rv_locations);
         locationList = new ArrayList<>();
@@ -56,7 +67,7 @@ public class SearchDisplayActivity extends AppCompatActivity {
                         locationList.add(location);
                     }
                 }
-                locationAdapter = new LocationAdapter(getApplicationContext(), locationList);
+                locationAdapter = new LocationAdapter(getApplicationContext(), locationList, latitude, longitude);
                 recyclerView.setAdapter(locationAdapter);
             }
 
@@ -95,4 +106,6 @@ public class SearchDisplayActivity extends AppCompatActivity {
     public void entertainmentFilterTapped(View view) {
         filterList(5);
     }
+
+
 }

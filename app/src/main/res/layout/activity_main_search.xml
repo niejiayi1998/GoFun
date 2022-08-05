@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="72dp"
-        android:onClick="onClick"
+        android:onClick="filterTapped"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,21 +33,27 @@
             android:orientation="horizontal">
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hiking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:text="Hiking" />
+                android:text="Hiking"
+                android:onClick="filterTapped"/>
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sports"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:text="Sports" />
+                android:text="Sports"
+                android:onClick="filterTapped"/>
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_amusement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amusement Park" />
+                android:text="Amusement Park"
+                android:onClick="filterTapped"/>
 
         </LinearLayout>
 
@@ -58,21 +64,27 @@
             android:orientation="horizontal">
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_arts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:text="Arts" />
+                android:text="Arts"
+                android:onClick="filterTapped"/>
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_scenic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:text="Scenic View" />
+                android:text="Scenic View"
+                android:onClick="filterTapped"/>
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_entertainment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Entertainment" />
+                android:text="Entertainment"
+                android:onClick="filterTapped"/>
 
         </LinearLayout>
 
@@ -83,6 +95,7 @@
         android:id="@+id/tv_currLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="getting location..."
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"

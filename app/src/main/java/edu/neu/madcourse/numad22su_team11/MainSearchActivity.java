@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -44,7 +43,7 @@ public class MainSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_search);
 
         latitude = 37.3387;
-        longitude = 121.8853;
+        longitude = -121.8853;
 
         tv_currLocation = findViewById(R.id.tv_currLocation);
 
@@ -62,14 +61,44 @@ public class MainSearchActivity extends AppCompatActivity {
 
     }
 
-    public void onClick(View view) {
+
+    public void filterTapped(View view) {
         Intent intent = new Intent(MainSearchActivity.this, SearchDisplayActivity.class);
+        int selectedFilter;
+        switch (view.getId()) {
+            case R.id.chip_hiking:
+                selectedFilter = 0;
+                break;
+            case R.id.chip_sports:
+                selectedFilter = 1;
+                break;
+            case R.id.chip_amusement:
+                selectedFilter = 2;
+                break;
+            case R.id.chip_arts:
+                selectedFilter = 3;
+                break;
+            case R.id.chip_scenic:
+                selectedFilter = 4;
+                break;
+            case R.id.chip_entertainment:
+                selectedFilter = 5;
+                break;
+            default:
+                selectedFilter = -1;
+                break;
+        }
+        intent.putExtra("selectedFilter", selectedFilter);
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longitude", longitude);
         startActivity(intent);
+
     }
+
 
     protected void createLocationRequest() {
         locationRequest = LocationRequest.create();
-        locationRequest.setInterval(10000);
+        locationRequest.setInterval(1000);
         locationRequest.setFastestInterval(5000);
         locationRequest.setPriority(Priority.PRIORITY_HIGH_ACCURACY);
     }
