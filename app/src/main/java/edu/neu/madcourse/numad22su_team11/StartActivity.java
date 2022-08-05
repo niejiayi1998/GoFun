@@ -15,11 +15,7 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    public void goToJulia(View view) {
-        startActivity(new Intent(StartActivity.this, MainSearchActivity.class));
-    }
-
-    public void goToDaisy(View view) {
-        startActivity(new Intent(StartActivity.this, LocationDetailActivity.class));
+    public void signUp(View view) {
+        startActivity(new Intent(StartActivity.this, RegisterActivity.class));
     }
 }

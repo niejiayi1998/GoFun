@@ -78,22 +78,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:clickable="true"
         android:fontFamily="sans-serif-condensed-medium"
+        android:onClick="signUp"
         android:text="@string/sign_up_now"
         android:textColor="#070707"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toEndOf="@+id/textViewNoAccount"
         app:layout_constraintTop_toBottomOf="@+id/buttonSignIn" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToJulia"
-        android:text="Button"
-        tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="641dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

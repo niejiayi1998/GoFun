@@ -9,4 +9,8 @@
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_now">Sign Up Now</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="next">NEXT</string>
 </resources>
