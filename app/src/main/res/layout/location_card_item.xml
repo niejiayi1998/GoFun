@@ -19,8 +19,8 @@
             android:layout_width="140dp"
             android:layout_height="115dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
             android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,23 +29,23 @@
             android:id="@+id/locationName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
             android:text="locationName"
             android:textAlignment="textStart"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/locationImage"
             android:textSize="15sp"
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="3dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationImage" />
 
         <ImageView
+            android:id="@+id/map_pin"
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:id="@+id/map_pin"
-            android:src="@drawable/map_pin_icon"
-            app:layout_constraintTop_toBottomOf="@+id/locationName"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="3dp"
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="3dp"/>
+            android:src="@drawable/map_pin_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationName" />
 
         <TextView
             android:id="@+id/distance"
@@ -58,24 +58,24 @@
             app:layout_constraintTop_toTopOf="@+id/map_pin" />
 
         <ImageView
+            android:id="@+id/btn_like"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:id="@+id/btn_like"
-            android:src="@drawable/like_btn"
-            app:layout_constraintEnd_toStartOf="@+id/tv_numOfLike"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="3dp"
             android:layout_marginBottom="4dp"
-            android:layout_marginRight="3dp" />
+            android:src="@drawable/like_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_numOfLike" />
 
         <TextView
+            android:id="@+id/tv_numOfLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_numOfLike"
-            android:text="80"
-            app:layout_constraintTop_toTopOf="@id/btn_like"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="5dp"
-            android:textSize="12sp"/>
+            android:text="80"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_like" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

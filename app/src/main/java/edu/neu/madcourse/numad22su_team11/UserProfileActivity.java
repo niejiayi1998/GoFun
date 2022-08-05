@@ -37,13 +37,6 @@ public class UserProfileActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-//    //Fragment View
-//    TableLayout tabLayout = findViewById(R.id.tl_userTabLayout);
-//    ViewPager viewPager2 = findViewById(R.id.viewPager2);
-//
-//    ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-//    viewPagerAdapter.addFragment(new EventCreateFragment(), "Create Events");
-
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
 
