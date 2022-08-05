@@ -14,4 +14,12 @@
     <string name="enter_password">Enter Password</string>
     <string name="next">NEXT</string>
     <string name="choose_the_activities_you_are_interested_in">Choose the activities you are interested in:</string>
+    <string name="hiking">Hiking</string>
+    <string name="sports">Sports</string>
+    <string name="amusement">Amusement</string>
+    <string name="arts">Arts</string>
+    <string name="scenic_view">Scenic View</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="choose_the_location_range">Choose the location range:</string>
+    <string name="i_like_the_activities_within">I like the activities within...</string>
 </resources>

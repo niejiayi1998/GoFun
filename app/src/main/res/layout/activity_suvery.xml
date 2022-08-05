@@ -6,26 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".SuveryActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-medium"
-
-        android:text="@string/choose_the_activities_you_are_interested_in"
-        android:textColor="#0E0000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.228"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:layout_constraintVertical_bias="0.041" />
-
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="378dp"
-        android:layout_height="232dp"
+        android:id="@+id/imageViewQA"
+        android:layout_width="337dp"
+        android:layout_height="198dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,16 +17,138 @@
         app:srcCompat="@drawable/hiking2" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkBoxEntertainment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox2"
-        android:layout_marginTop="8dp"
-        android:button="@drawable/ic_baseline_favorite_border_24"
+        android:button="@drawable/custom_check_box"
         android:checked="false"
-        android:text="CheckBox"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="6dp"
+
+        android:text="@string/entertainment"
+        android:textColor="#6C6B6B"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxScenicView"
+        app:useMaterialThemeColors="false" />
+
+    <TextView
+        android:id="@+id/textViewQuestion1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+
+        android:text="I'm interested in..."
+        android:textColor="#111212"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewQA"
+        app:layout_constraintVertical_bias="0.041" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkBoxHiking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:button="@drawable/custom_check_box"
+        android:checked="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="6dp"
+        android:text="@string/hiking"
+        android:textColor="#6C6B6B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQuestion1"
+        app:useMaterialThemeColors="false" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkBoxArts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/custom_check_box"
+        android:checked="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="6dp"
+        android:text="@string/arts"
+        android:textColor="#6C6B6B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxAmusement"
+        app:useMaterialThemeColors="false" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkBoxScenicView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/custom_check_box"
+        android:checked="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="6dp"
+        android:text="@string/scenic_view"
+        android:textColor="#6C6B6B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxArts"
+        app:useMaterialThemeColors="false" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkBoxSports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/custom_check_box"
+        android:checked="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="6dp"
+        android:text="@string/sports"
+        android:textColor="#6C6B6B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxHiking"
+        app:useMaterialThemeColors="false" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/checkBoxAmusement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/custom_check_box"
+        android:checked="false"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:padding="6dp"
+        android:text="@string/amusement"
+        android:textColor="#6C6B6B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxSports"
+        app:useMaterialThemeColors="false" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="186dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="68dp"
+        android:backgroundTint="#0E0E0E"
+        android:text="Let's go fun >>"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxEntertainment"
+        app:layout_constraintVertical_bias="0.276" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
