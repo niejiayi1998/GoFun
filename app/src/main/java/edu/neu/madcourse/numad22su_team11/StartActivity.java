@@ -18,4 +18,8 @@ public class StartActivity extends AppCompatActivity {
     public void signUp(View view) {
         startActivity(new Intent(StartActivity.this, RegisterActivity.class));
     }
+
+    public void onClick(View view) {
+        startActivity(new Intent(StartActivity.this, MainSearchActivity.class));
+    }
 }
