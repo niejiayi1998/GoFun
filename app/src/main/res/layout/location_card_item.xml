@@ -16,6 +16,7 @@
 
         <ImageView
             android:id="@+id/locationImage"
+            android:layout_marginTop="7dp"
             android:layout_width="140dp"
             android:layout_height="115dp"
             android:layout_gravity="center"

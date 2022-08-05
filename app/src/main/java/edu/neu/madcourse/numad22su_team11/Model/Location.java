@@ -9,10 +9,12 @@ public class Location {
     private double latitude;
     private double longitude;
     private String locationId;
+    private String address;
+    private String description;
 
     public Location() {}
 
-    public Location(String name, String imgUrl, int category, int numOfLike, double latitude, double longitude, String locationId) {
+    public Location(String name, String imgUrl, int category, int numOfLike, double latitude, double longitude, String locationId, String address, String description) {
         this.name = name;
         this.imgUrl = imgUrl;
         this.category = category;
@@ -20,6 +22,8 @@ public class Location {
         this.latitude = latitude;
         this.longitude = longitude;
         this.locationId = locationId;
+        this.address = address;
+        this.description = description;
     }
 
     public String getName() {
@@ -76,5 +80,21 @@ public class Location {
 
     public void setLocationId(String locationId) {
         this.locationId = locationId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

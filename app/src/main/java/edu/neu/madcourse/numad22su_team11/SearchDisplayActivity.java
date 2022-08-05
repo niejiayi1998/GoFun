@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import edu.neu.madcourse.numad22su_team11.Adapter.LocationAdapter;
@@ -105,6 +110,38 @@ public class SearchDisplayActivity extends AppCompatActivity {
 
     public void entertainmentFilterTapped(View view) {
         filterList(5);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.sort_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_recom:
+                // sort by most recommended
+                //Collections.sort(locationList, President.PresidentNameAZComparator);
+                Toast.makeText(this, "Sort by recommended", Toast.LENGTH_SHORT).show();
+                locationAdapter.notifyDataSetChanged();
+                return true;
+            case R.id.menu_dist:
+                // sort by closest
+                //Collections.sort(locationList, President.PresidentNameZAComparator);
+                Toast.makeText(this, "Sort by distance", Toast.LENGTH_SHORT).show();
+                locationAdapter.notifyDataSetChanged();
+                return true;
+            case R.id.menu_like:
+                // sort by most liked
+                //Collections.sort(locationList, President.PresidentNameDateAscendingComparator);
+                Toast.makeText(this, "Sort by most liked", Toast.LENGTH_SHORT).show();
+                locationAdapter.notifyDataSetChanged();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
