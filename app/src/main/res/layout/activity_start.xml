@@ -86,5 +86,14 @@
         app:layout_constraintStart_toEndOf="@+id/textViewNoAccount"
         app:layout_constraintTop_toBottomOf="@+id/buttonSignIn" />
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToJulia"
+        android:text="Button"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="641dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
