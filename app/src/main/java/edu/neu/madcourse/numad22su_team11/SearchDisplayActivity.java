@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.neu.madcourse.numad22su_team11.Adapter.LocationAdapter;
@@ -93,6 +94,8 @@ public class SearchDisplayActivity extends AppCompatActivity {
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
                             Toast.makeText(getApplicationContext(), "Sort by distance", Toast.LENGTH_SHORT).show();
+                            sortByDistance();
+                            locationAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -112,6 +115,25 @@ public class SearchDisplayActivity extends AppCompatActivity {
 
 
 
+    }
+
+    /**
+     * Implement sorting algorithm based on user's survey, distance, and most liked
+     */
+    private void sortByRecommend() {
+
+    }
+
+    private void sortByDistance() {
+        Collections.sort(locationList, new Comparator<Location>() {
+            @Override
+            public int compare(Location o1, Location o2) {
+                if (o1.getDistance(latitude, longitude) - o2.getDistance(latitude, longitude) >= 0) {
+                    return 1;
+                }
+                return -1;
+            }
+        });
     }
 
     private void filterList(int category) {
@@ -168,5 +190,6 @@ public class SearchDisplayActivity extends AppCompatActivity {
     public void entertainmentFilterTapped(View view) {
         filterList(5);
     }
+
 
 }
