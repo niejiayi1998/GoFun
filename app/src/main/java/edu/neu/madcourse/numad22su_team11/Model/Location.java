@@ -1,6 +1,8 @@
 package edu.neu.madcourse.numad22su_team11.Model;
 
 
+import java.util.Comparator;
+
 public class Location {
     private String name;
     private String imgUrl;
@@ -97,4 +99,18 @@ public class Location {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public double getDistance(double latitude, double longitude) {
+        float[] result = new float[1];
+        android.location.Location.distanceBetween(latitude, longitude, this.getLatitude(), this.getLongitude(), result);
+        double distance = result[0] * 0.000621371;
+        return distance;
+    }
+
+    public static Comparator<Location> locationLikeComparator = new Comparator<Location>() {
+        @Override
+        public int compare(Location o1, Location o2) {
+            return o2.getNumOfLike() - o1.getNumOfLike();
+        }
+    };
 }

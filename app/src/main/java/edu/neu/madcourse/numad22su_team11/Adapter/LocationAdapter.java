@@ -79,9 +79,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             name.setText(locationToBind.getName());
             numOfLike.setText(String.valueOf(locationToBind.getNumOfLike()));
 
-            float[] result = new float[1];
-            android.location.Location.distanceBetween(latitude, longitude, locationToBind.getLatitude(), locationToBind.getLongitude(), result);
-            double distance = result[0] * 0.000621371;
+            double distance = locationToBind.getDistance(latitude, longitude);
             String str_dist = String.format("%.2f", distance) + " mi";
             tv_distance.setText(String.valueOf(str_dist));
         }

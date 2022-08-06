@@ -7,12 +7,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,10 +37,15 @@ public class SearchDisplayActivity extends AppCompatActivity {
     private List<Location> locationList;
     private LocationAdapter locationAdapter;
     private int selectedFilter = -1;
-    private double latitude;
-    private double longitude;
+    double latitude;
+    double longitude;
 
     Intent intent;
+
+    private BottomSheetDialog bottomSheetDialog;
+    private RadioButton rb_recommend;
+    private RadioButton rb_distance;
+    private RadioButton rb_like;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +65,53 @@ public class SearchDisplayActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         filterList(selectedFilter);
+
+
+        Button btn_sort = findViewById(R.id.btn_sort);
+        btn_sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View dialogView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.sort_bottom_sheet, null);
+                bottomSheetDialog = new BottomSheetDialog(SearchDisplayActivity.this);
+                bottomSheetDialog.setContentView(dialogView);
+                bottomSheetDialog.show();
+                rb_recommend = dialogView.findViewById(R.id.rb_recommend);
+                rb_distance = dialogView.findViewById(R.id.rb_distance);
+                rb_like = dialogView.findViewById(R.id.rb_like);
+
+                rb_recommend.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            Toast.makeText(getApplicationContext(), "Sort by recommend", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                rb_distance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            Toast.makeText(getApplicationContext(), "Sort by distance", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                rb_like.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            Toast.makeText(getApplicationContext(), "Sort by most liked", Toast.LENGTH_SHORT).show();
+                            Collections.sort(locationList, Location.locationLikeComparator);
+                            locationAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+        });
+
+
+
     }
 
     private void filterList(int category) {
@@ -111,38 +168,5 @@ public class SearchDisplayActivity extends AppCompatActivity {
     public void entertainmentFilterTapped(View view) {
         filterList(5);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.sort_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_recom:
-                // sort by most recommended
-                //Collections.sort(locationList, President.PresidentNameAZComparator);
-                Toast.makeText(this, "Sort by recommended", Toast.LENGTH_SHORT).show();
-                locationAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.menu_dist:
-                // sort by closest
-                //Collections.sort(locationList, President.PresidentNameZAComparator);
-                Toast.makeText(this, "Sort by distance", Toast.LENGTH_SHORT).show();
-                locationAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.menu_like:
-                // sort by most liked
-                //Collections.sort(locationList, President.PresidentNameDateAscendingComparator);
-                Toast.makeText(this, "Sort by most liked", Toast.LENGTH_SHORT).show();
-                locationAdapter.notifyDataSetChanged();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
 }
