@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class User {
-    private String name;
-    private String email;
+    private final String name;
+    private final String email;
     private String password;
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
     private int[] preferences;
@@ -30,5 +30,61 @@ public class User {
         likedActivities = new HashMap<>();
         joinedEvents = new ArrayList<>();
         postedEvents = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int[] getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(int[] preferences) {
+        this.preferences = preferences;
+    }
+
+    public int getNUM_OF_CATEGORIES() {
+        return NUM_OF_CATEGORIES;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public Map<Integer, Integer> getLikedActivities() {
+        return likedActivities;
+    }
+
+    public void setLikedActivities(Map<Integer, Integer> likedActivities) {
+        this.likedActivities = likedActivities;
+    }
+
+    public List<Event> getJoinedEvents() {
+        return joinedEvents;
+    }
+
+    public void setJoinedEvents(List<Event> joinedEvents) {
+        this.joinedEvents = joinedEvents;
+    }
+
+    public List<Event> getPostedEvents() {
+        return postedEvents;
+    }
+
+    public void setPostedEvents(List<Event> postedEvents) {
+        this.postedEvents = postedEvents;
     }
 }
