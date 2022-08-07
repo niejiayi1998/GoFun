@@ -67,23 +67,9 @@ public class SuveryActivity extends AppCompatActivity {
         if (CBEntertainment.isChecked()) preferences.add(1);
         else preferences.add(0);
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User currentUser = snapshot.getValue(User.class);
-                assert currentUser != null;
-                currentUser.setPreferences(preferences);
-                reference.setValue(currentUser);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        // startActivity(new Intent(SuveryActivity.this, MainSearchActivity.class));
+        // UPDATE USER DATA!!!
+        reference.child("preferences").setValue(preferences);
+        startActivity(new Intent(SuveryActivity.this, MainSearchActivity.class));
+        finish();
     }
-
-
 }
