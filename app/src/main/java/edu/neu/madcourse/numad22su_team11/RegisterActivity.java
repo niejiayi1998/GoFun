@@ -56,31 +56,91 @@ public class RegisterActivity extends AppCompatActivity {
     public void next(View view) {
 
         // get name, email and password values
+//        String name = enterUsername.getText().toString().trim();
+//        String email = enterEmail.getText().toString().trim();
+//        String password = enterPassword.getText().toString();
+//
+//        firebaseAuth.createUserWithEmailAndPassword(email, password);
+//
+//        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+//        assert firebaseUser != null;
+//        String firebaseUserUid = firebaseUser.getUid();
+//        User newUser = new User(firebaseUserUid,
+//                name,
+//                email,
+//                password,
+//                "www.sample.com",
+//                new HashMap<>(),
+//                new ArrayList<>(),
+//                new ArrayList<>());
+//        List<Event> eventList = new ArrayList<>();
+//        eventList.add(new Event("sample", "sample", "sample", "sample", 0, "sample",3, null));
+//        newUser.setJoinedEvents(eventList);
+//        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
+//        reference.setValue(newUser);
+
+
+        // line starts here
+
+        // get name, email and password values
         String name = enterUsername.getText().toString().trim();
         String email = enterEmail.getText().toString().trim();
         String password = enterPassword.getText().toString();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password);
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                            assert firebaseUser != null;
+                            String firebaseUserUid = firebaseUser.getUid();
+                            // create a new user
+                            User newUser = new User(firebaseUserUid,
+                                    name,
+                                    email,
+                                    password,
+                                    "www.sample.com",
+                                    new HashMap<>(),
+                                    new ArrayList<>(),
+                                    new ArrayList<>());
+                            List<Event> eventList = new ArrayList<>();
+                            // SAMPLE: set joinedEvent list
+                            eventList.add(new Event("sample",
+                                    "sample",
+                                    "sample",
+                                    "sample",
+                                    0,
+                                    "sample",
+                                    3,
+                                    null));
+                            newUser.setJoinedEvents(eventList);
 
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        assert firebaseUser != null;
-        String firebaseUserUid = firebaseUser.getUid();
-        User newUser = new User(firebaseUserUid,
-                name,
-                email,
-                password,
-                "www.sample.com",
-                new HashMap<>(),
-                new ArrayList<>(),
-                new ArrayList<>());
-        List<Event> eventList = new ArrayList<>();
-        eventList.add(new Event("sample", "sample", "sample", "sample", 0, "sample",3, null));
-        newUser.setJoinedEvents(eventList);
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
-        reference.setValue(newUser);
-
-
-
-        //startActivity(new Intent(RegisterActivity.this, SuveryActivity.class));
+                            // save to firebase with its unique userID
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
+                            reference.setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        startActivity(new Intent(RegisterActivity.this, SuveryActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this,
+                                                "Can't register with the given info.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        } else {
+                            if (password.length() < 6) {
+                                Toast.makeText(RegisterActivity.this,
+                                        "Password should have 6 characters at least!",
+                                        Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(RegisterActivity.this,
+                                        "This email has already been registered!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                });
     }
 }
