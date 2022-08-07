@@ -60,7 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
         String email = enterEmail.getText().toString().trim();
         String password = enterPassword.getText().toString();
 
-        firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseAuth.createUserWithEmailAndPassword(email, password);
+
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         assert firebaseUser != null;
         String firebaseUserUid = firebaseUser.getUid();
         User newUser = new User(firebaseUserUid,
@@ -77,57 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
         reference.setValue(newUser);
 
-//        if (name.equals("") || email.equals("") || password.equals("")) {
-//            Toast.makeText(RegisterActivity.this, "Fields can't be empty", Toast.LENGTH_SHORT).show();
-//        } else {
-//            // create a new user
-//            firebaseAuth.createUserWithEmailAndPassword(email, password)
-//                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (task.isSuccessful()) {
-//                                firebaseUser = firebaseAuth.getCurrentUser();
-//                                assert firebaseUser != null;
-//                                String firebaseUserUid = firebaseUser.getUid();
-//
-//                                // hierarchy is created here
-//                                reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
-//
-//                                // create a new user
-//                                User newUser = new User(firebaseUserUid,
-//                                        name,
-//                                        email,
-//                                        password, new int[6],
-//                                        "www.sample.com",
-//                                        new HashMap<>(),
-//                                        new ArrayList<>(),
-//                                        new ArrayList<>());
-//
-//                                reference.setValue(newUser);
-//                            }  else {
-//                                Toast.makeText(RegisterActivity.this, "Something is wrong", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//        }
-
 
 
         //startActivity(new Intent(RegisterActivity.this, SuveryActivity.class));
     }
 }
-
-
-//        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//                    Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(RegisterActivity.this, "Fail", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
-//        reference = FirebaseDatabase.getInstance().getReference("Users");
-//        reference.setValue(newUser);
