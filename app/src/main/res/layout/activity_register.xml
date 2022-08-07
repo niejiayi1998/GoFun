@@ -72,13 +72,13 @@
         app:layout_constraintVertical_bias="0.355" />
 
     <Button
-        android:id="@+id/buttonNext"
+        android:id="@+id/buttonConfirm"
         android:layout_width="302dp"
         android:layout_height="49dp"
         android:layout_marginTop="28dp"
         android:backgroundTint="#000000"
         android:onClick="next"
-        android:text="@string/next"
+        android:text="@string/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"

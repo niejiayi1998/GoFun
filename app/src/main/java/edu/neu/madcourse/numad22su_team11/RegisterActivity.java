@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         enterUsername = findViewById(R.id.editTextUsernameSignUp);
         enterEmail = findViewById(R.id.editTextEmailSignUp);
         enterPassword = findViewById(R.id.editTextPasswordSignUp);
-        buttonNext = findViewById(R.id.buttonNext);
+        buttonNext = findViewById(R.id.buttonConfirm);
 
         // connect with firebase
         firebaseAuth = FirebaseAuth.getInstance();

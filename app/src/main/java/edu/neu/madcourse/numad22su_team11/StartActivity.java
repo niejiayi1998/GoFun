@@ -60,7 +60,8 @@ public class StartActivity extends AppCompatActivity {
         startActivity(new Intent(StartActivity.this, RegisterActivity.class));
     }
 
-    public void onClick(View view) {
-        startActivity(new Intent(StartActivity.this, MainSearchActivity.class));
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }
