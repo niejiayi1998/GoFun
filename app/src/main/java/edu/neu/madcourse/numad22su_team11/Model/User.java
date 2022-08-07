@@ -10,7 +10,6 @@ public class User {
     private final String name;
     private final String email;
     private String password;
-    private String imgUrl = "www.sample.com";
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
     private List<Integer> preferences;
     // [category : frequency]
@@ -50,14 +49,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public List<Integer> getPreferences() {

@@ -43,6 +43,7 @@
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
