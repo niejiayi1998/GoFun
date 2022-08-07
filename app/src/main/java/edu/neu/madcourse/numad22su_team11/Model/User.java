@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class User {
+    private final String id;
     private final String name;
     private final String email;
     private String password;
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
-    private int[] preferences;
+    // private int[] preferences;
 
     private String imgUrl;
     // [category : frequency]
@@ -21,22 +22,27 @@ public class User {
     private List<Event> postedEvents;
 
     // ATTENTION: all fields should be added to constructor, inorder to add to firebase
-    public User(String name,
+    public User(String id,
+                String name,
                 String email,
                 String password,
-                int[] preferences,
                 String imgUrl,
                 Map<Integer, Integer> likedActivities,
                 List<Event> joinedEvents,
                 List<Event> postedEvents) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.preferences = preferences;
+        // this.preferences = preferences;
         this.imgUrl = imgUrl;
         this.likedActivities = likedActivities;
         this.joinedEvents = joinedEvents;
         this.postedEvents = postedEvents;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -55,13 +61,13 @@ public class User {
         this.password = password;
     }
 
-    public int[] getPreferences() {
-        return preferences;
-    }
-
-    public void setPreferences(int[] preferences) {
-        this.preferences = preferences;
-    }
+//    public int[] getPreferences() {
+//        return preferences;
+//    }
+//
+//    public void setPreferences(int[] preferences) {
+//        this.preferences = preferences;
+//    }
 
     public String getImgUrl() {
         return imgUrl;

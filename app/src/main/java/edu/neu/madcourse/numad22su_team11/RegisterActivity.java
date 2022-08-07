@@ -19,9 +19,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import edu.neu.madcourse.numad22su_team11.Model.Event;
 import edu.neu.madcourse.numad22su_team11.Model.User;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -57,15 +60,27 @@ public class RegisterActivity extends AppCompatActivity {
         String email = enterEmail.getText().toString().trim();
         String password = enterPassword.getText().toString();
 
-        User newUser = new User(name, email, password);
-        reference = FirebaseDatabase.getInstance().getReference("Users");
+        firebaseUser = firebaseAuth.getCurrentUser();
+        assert firebaseUser != null;
+        String firebaseUserUid = firebaseUser.getUid();
+        User newUser = new User(firebaseUserUid,
+                name,
+                email,
+                password,
+                "www.sample.com",
+                new HashMap<>(),
+                new ArrayList<>(),
+                new ArrayList<>());
+        List<Event> eventList = new ArrayList<>();
+        eventList.add(new Event("sample", "sample", "sample", "sample", 0, "sample",3, null));
+        newUser.setJoinedEvents(eventList);
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
         reference.setValue(newUser);
 
 //        if (name.equals("") || email.equals("") || password.equals("")) {
 //            Toast.makeText(RegisterActivity.this, "Fields can't be empty", Toast.LENGTH_SHORT).show();
 //        } else {
 //            // create a new user
-//            Toast.makeText(RegisterActivity.this, "hey", Toast.LENGTH_LONG).show();
 //            firebaseAuth.createUserWithEmailAndPassword(email, password)
 //                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 //                        @Override
@@ -74,21 +89,23 @@ public class RegisterActivity extends AppCompatActivity {
 //                                firebaseUser = firebaseAuth.getCurrentUser();
 //                                assert firebaseUser != null;
 //                                String firebaseUserUid = firebaseUser.getUid();
+//
 //                                // hierarchy is created here
-//                                reference = FirebaseDatabase.getInstance().getReference().child("Users");
-//                                User newUser = new User(name, email, password);
-//                                reference.push().setValue(newUser)
-//                                        // if successful, continue
-//                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void unused) {
-//                                        Intent intent = new Intent(RegisterActivity.this, SuveryActivity.class);
-//                                        startActivity(intent);
-//                                        finish();
-//                                    }
-//                                });
+//                                reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
+//
+//                                // create a new user
+//                                User newUser = new User(firebaseUserUid,
+//                                        name,
+//                                        email,
+//                                        password, new int[6],
+//                                        "www.sample.com",
+//                                        new HashMap<>(),
+//                                        new ArrayList<>(),
+//                                        new ArrayList<>());
+//
+//                                reference.setValue(newUser);
 //                            }  else {
-//                                // Toast.makeText(RegisterActivity.this, "Something is wrong", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(RegisterActivity.this, "Something is wrong", Toast.LENGTH_SHORT).show();
 //                            }
 //                        }
 //                    });
@@ -99,3 +116,18 @@ public class RegisterActivity extends AppCompatActivity {
         //startActivity(new Intent(RegisterActivity.this, SuveryActivity.class));
     }
 }
+
+
+//        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if (task.isSuccessful()) {
+//                    Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(RegisterActivity.this, "Fail", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//
+//        reference = FirebaseDatabase.getInstance().getReference("Users");
+//        reference.setValue(newUser);
