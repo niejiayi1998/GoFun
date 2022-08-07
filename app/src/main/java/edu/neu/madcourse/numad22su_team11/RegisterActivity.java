@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // save data in firebase on button click and open the next activity
-    public void next(View view) {
+    public void confirm(View view) {
 
         // get name, email and password values
         String name = enterUsername.getText().toString().trim();
