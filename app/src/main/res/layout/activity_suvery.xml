@@ -142,6 +142,7 @@
         android:layout_height="51dp"
         android:layout_marginBottom="68dp"
         android:backgroundTint="#0E0E0E"
+        android:onClick="letsGoFun"
         android:text="Let's go fun >>"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
