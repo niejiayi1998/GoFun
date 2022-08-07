@@ -56,33 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
     public void next(View view) {
 
         // get name, email and password values
-//        String name = enterUsername.getText().toString().trim();
-//        String email = enterEmail.getText().toString().trim();
-//        String password = enterPassword.getText().toString();
-//
-//        firebaseAuth.createUserWithEmailAndPassword(email, password);
-//
-//        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-//        assert firebaseUser != null;
-//        String firebaseUserUid = firebaseUser.getUid();
-//        User newUser = new User(firebaseUserUid,
-//                name,
-//                email,
-//                password,
-//                "www.sample.com",
-//                new HashMap<>(),
-//                new ArrayList<>(),
-//                new ArrayList<>());
-//        List<Event> eventList = new ArrayList<>();
-//        eventList.add(new Event("sample", "sample", "sample", "sample", 0, "sample",3, null));
-//        newUser.setJoinedEvents(eventList);
-//        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
-//        reference.setValue(newUser);
-
-
-        // line starts here
-
-        // get name, email and password values
         String name = enterUsername.getText().toString().trim();
         String email = enterEmail.getText().toString().trim();
         String password = enterPassword.getText().toString();
@@ -96,25 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                             assert firebaseUser != null;
                             String firebaseUserUid = firebaseUser.getUid();
                             // create a new user
-                            User newUser = new User(firebaseUserUid,
-                                    name,
-                                    email,
-                                    password,
-                                    "www.sample.com",
-                                    new HashMap<>(),
-                                    new ArrayList<>(),
-                                    new ArrayList<>());
-                            List<Event> eventList = new ArrayList<>();
-                            // SAMPLE: set joinedEvent list
-                            eventList.add(new Event("sample",
-                                    "sample",
-                                    "sample",
-                                    "sample",
-                                    0,
-                                    "sample",
-                                    3,
-                                    null));
-                            newUser.setJoinedEvents(eventList);
+                            User newUser = new User(firebaseUserUid, name, email, password);
 
                             // save to firebase with its unique userID
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);

@@ -10,10 +10,9 @@ public class User {
     private final String name;
     private final String email;
     private String password;
+    private String imgUrl = "www.sample.com";
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
-    // private int[] preferences;
-
-    private String imgUrl;
+    private List<Integer> preferences;
     // [category : frequency]
     private Map<Integer, Integer> likedActivities;
     // events joined
@@ -22,23 +21,15 @@ public class User {
     private List<Event> postedEvents;
 
     // ATTENTION: all fields should be added to constructor, inorder to add to firebase
-    public User(String id,
-                String name,
-                String email,
-                String password,
-                String imgUrl,
-                Map<Integer, Integer> likedActivities,
-                List<Event> joinedEvents,
-                List<Event> postedEvents) {
+    public User(String id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        // this.preferences = preferences;
-        this.imgUrl = imgUrl;
-        this.likedActivities = likedActivities;
-        this.joinedEvents = joinedEvents;
-        this.postedEvents = postedEvents;
+        preferences = new ArrayList<>();
+        likedActivities = new HashMap<>();
+        joinedEvents = new ArrayList<>();
+        postedEvents = new ArrayList<>();
     }
 
     public String getId() {
@@ -61,20 +52,20 @@ public class User {
         this.password = password;
     }
 
-//    public int[] getPreferences() {
-//        return preferences;
-//    }
-//
-//    public void setPreferences(int[] preferences) {
-//        this.preferences = preferences;
-//    }
-
     public String getImgUrl() {
         return imgUrl;
     }
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public List<Integer> getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(List<Integer> preferences) {
+        this.preferences = preferences;
     }
 
     public Map<Integer, Integer> getLikedActivities() {

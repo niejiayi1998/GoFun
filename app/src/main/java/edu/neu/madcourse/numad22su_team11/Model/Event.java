@@ -12,22 +12,12 @@ public class Event {
     private String locationId;
     private List<User> peopleJoined;
 
-    public Event(String name,
-                 String creatorId,
-                 String imgUrl,
-                 String time,
-                 int category,
-                 String locationId,
-                 int numPeopleJoined,
-                 List<User> peopleJoined){
+    public Event(String name,String creatorId, String imgUrl, String time, String locationId){
         this.name = name;
         this.creatorId = creatorId;
         this.imgUrl = imgUrl;
         this.time = time;
-        this.category = category;
         this.locationId = locationId;
-        this.NumPeopleJoined = numPeopleJoined;
-        this.peopleJoined = peopleJoined;
     }
 
     // Getter Methods
