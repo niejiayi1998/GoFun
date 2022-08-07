@@ -60,42 +60,46 @@ public class RegisterActivity extends AppCompatActivity {
         String email = enterEmail.getText().toString().trim();
         String password = enterPassword.getText().toString();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                            assert firebaseUser != null;
-                            String firebaseUserUid = firebaseUser.getUid();
-                            // create a new user
-                            User newUser = new User(firebaseUserUid, name, email, password);
+        if (name.equals("") || email.equals("") || password.equals("")) {
+            Toast.makeText(RegisterActivity.this, "Oops! You have empty blanks", Toast.LENGTH_SHORT).show();
+        } else {
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                                assert firebaseUser != null;
+                                String firebaseUserUid = firebaseUser.getUid();
+                                // create a new user
+                                User newUser = new User(firebaseUserUid, name, email, password);
 
-                            // save to firebase with its unique userID
-                            reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
-                            reference.setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        startActivity(new Intent(RegisterActivity.this, SuveryActivity.class));
-                                        finish();
-                                    } else {
-                                        Toast.makeText(RegisterActivity.this,
-                                                "Can't register with the given info.", Toast.LENGTH_LONG).show();
+                                // save to firebase with its unique userID
+                                reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUserUid);
+                                reference.setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            startActivity(new Intent(RegisterActivity.this, SuveryActivity.class));
+                                            finish();
+                                        } else {
+                                            Toast.makeText(RegisterActivity.this,
+                                                    "Can't register with the given info.", Toast.LENGTH_LONG).show();
+                                        }
                                     }
-                                }
-                            });
-                        } else {
-                            if (password.length() < 6) {
-                                Toast.makeText(RegisterActivity.this,
-                                        "Password should have 6 characters at least!",
-                                        Toast.LENGTH_LONG).show();
+                                });
                             } else {
-                                Toast.makeText(RegisterActivity.this,
-                                        "This email has already been registered!", Toast.LENGTH_LONG).show();
+                                if (password.length() < 6) {
+                                    Toast.makeText(RegisterActivity.this,
+                                            "Password should have 6 characters at least!",
+                                            Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(RegisterActivity.this,
+                                            "This email is not valid or has already been registered!", Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+        }
     }
 }
