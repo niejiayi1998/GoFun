@@ -11,9 +11,8 @@ public class User {
     private String password;
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
     private int[] preferences;
-    private final int NUM_OF_CATEGORIES = 6;
 
-    private final String imgUrl = "www.sample.com";
+    private String imgUrl;
     // [category : frequency]
     private Map<Integer, Integer> likedActivities;
     // events joined
@@ -21,15 +20,23 @@ public class User {
     // events posted
     private List<Event> postedEvents;
 
-
-    public User(String name, String email, String password) {
+    // ATTENTION: all fields should be added to constructor, inorder to add to firebase
+    public User(String name,
+                String email,
+                String password,
+                int[] preferences,
+                String imgUrl,
+                Map<Integer, Integer> likedActivities,
+                List<Event> joinedEvents,
+                List<Event> postedEvents) {
         this.name = name;
         this.email = email;
         this.password = password;
-        preferences = new int[NUM_OF_CATEGORIES];
-        likedActivities = new HashMap<>();
-        joinedEvents = new ArrayList<>();
-        postedEvents = new ArrayList<>();
+        this.preferences = preferences;
+        this.imgUrl = imgUrl;
+        this.likedActivities = likedActivities;
+        this.joinedEvents = joinedEvents;
+        this.postedEvents = postedEvents;
     }
 
     public String getName() {
@@ -56,12 +63,12 @@ public class User {
         this.preferences = preferences;
     }
 
-    public int getNUM_OF_CATEGORIES() {
-        return NUM_OF_CATEGORIES;
-    }
-
     public String getImgUrl() {
         return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Map<Integer, Integer> getLikedActivities() {
