@@ -73,8 +73,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
         public TextView tv_distance;
         public ImageView iv_like;
 
-        public TextView tv_score;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -83,8 +81,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
             numOfLike = itemView.findViewById(R.id.tv_numOfLike);
             tv_distance = itemView.findViewById(R.id.distance);
             iv_like = itemView.findViewById(R.id.iv_like);
-
-            tv_score = itemView.findViewById(R.id.tv_score);
         }
 
         private void bindThisData (Location locationToBind) {
@@ -114,10 +110,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.ViewHo
 
                 }
             });
-
-//            double score = locationToBind.getScore(latitude, longitude);
-//            String str_score = String.format("%.2f", score);
-//            tv_score.setText(str_score);
         }
     }
 }
