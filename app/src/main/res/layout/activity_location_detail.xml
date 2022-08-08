@@ -21,14 +21,16 @@
 
     <ImageView
         android:id="@+id/iv_location_img"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="150dp"
         android:src="@drawable/user_profile_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/tv_location_name"
@@ -61,11 +63,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_location_name" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkBox"
@@ -85,18 +87,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="28dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Liked"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/iv_location_img" />
+        app:layout_constraintTop_toTopOf="@+id/checkBox" />
 
     <TextView
         android:id="@+id/tv_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/greenback"
         android:fontFamily="sans-serif-condensed-medium"
@@ -108,42 +110,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_address" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="409dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_create_event">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_event_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-
-
-    </ScrollView>
-
     <Button
         android:id="@+id/bt_create_event"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#8BC34A"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Create Event"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_event_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/bt_create_event"
+        android:layout_marginTop="5dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
