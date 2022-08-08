@@ -4,112 +4,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wallsearch"
     tools:context=".MainSearchActivity">
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
+        android:layout_width="199dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#FF5722"
         android:onClick="filterTapped"
         android:text="Button"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:singleSelection="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_hiking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:text="Hiking"
-                android:onClick="filterTapped"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_sports"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:text="Sports"
-                android:onClick="filterTapped"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_amusement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Amusement Park"
-                android:onClick="filterTapped"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_arts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:text="Arts"
-                android:onClick="filterTapped"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_scenic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:text="Scenic View"
-                android:onClick="filterTapped"/>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_entertainment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Entertainment"
-                android:onClick="filterTapped"/>
-
-        </LinearLayout>
-
-
-    </com.google.android.material.chip.ChipGroup>
 
     <TextView
         android:id="@+id/tv_currLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="getting location..."
+        android:textColor="@color/white"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_updateLocation" />
 
     <Button
         android:id="@+id/btn_updateLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="update"
-        app:layout_constraintStart_toEndOf="@+id/tv_currLocation"
-        app:layout_constraintTop_toTopOf="@id/tv_currLocation"
-        app:layout_constraintBottom_toBottomOf="@id/tv_currLocation"
-        android:layout_marginLeft="10dp"/>
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_scenic"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_hiking"
+        android:layout_width="99dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="casual"
+        android:onClick="filterTapped"
+        android:text="Hiking"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_sports"
+        android:layout_width="111dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#0B132B"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:onClick="filterTapped"
+        android:text="Sports"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_hiking" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_amusement"
+        android:layout_width="223dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:onClick="filterTapped"
+        android:text="Amusement Park"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_arts" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_arts"
+        android:layout_width="74dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/black"
+        android:onClick="filterTapped"
+        android:text="Arts"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_entertainment" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_scenic"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/black"
+        android:onClick="filterTapped"
+        android:text="Scenic View"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_amusement" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_entertainment"
+        android:layout_width="180dp"
+        android:layout_height="52dp"
+        android:backgroundTint="@color/black"
+        android:onClick="filterTapped"
+        android:text="Entertainment"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_sports" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
