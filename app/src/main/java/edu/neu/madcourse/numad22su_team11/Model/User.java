@@ -1,9 +1,7 @@
 package edu.neu.madcourse.numad22su_team11.Model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class User {
     private String id;
@@ -12,8 +10,6 @@ public class User {
     private String password;
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
     private List<Integer> preferences;
-    // [category : frequency]
-    private Map<Integer, Integer> likedActivities;
     // events joined
     private List<Event> joinedEvents;
     // events posted
@@ -28,7 +24,6 @@ public class User {
         this.email = email;
         this.password = password;
         preferences = new ArrayList<>();
-        likedActivities = new HashMap<>();
         joinedEvents = new ArrayList<>();
         postedEvents = new ArrayList<>();
     }
@@ -59,14 +54,6 @@ public class User {
 
     public void setPreferences(List<Integer> preferences) {
         this.preferences = preferences;
-    }
-
-    public Map<Integer, Integer> getLikedActivities() {
-        return likedActivities;
-    }
-
-    public void setLikedActivities(Map<Integer, Integer> likedActivities) {
-        this.likedActivities = likedActivities;
     }
 
     public List<Event> getJoinedEvents() {
