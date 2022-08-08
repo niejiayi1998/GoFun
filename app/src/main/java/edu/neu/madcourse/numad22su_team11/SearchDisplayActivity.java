@@ -8,16 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +28,7 @@ import java.util.List;
 
 import edu.neu.madcourse.numad22su_team11.Adapter.LocationAdapter;
 import edu.neu.madcourse.numad22su_team11.Model.Location;
+import edu.neu.madcourse.numad22su_team11.Model.User;
 
 public class SearchDisplayActivity extends AppCompatActivity {
 
@@ -40,6 +38,7 @@ public class SearchDisplayActivity extends AppCompatActivity {
     private int selectedFilter = -1;
     double latitude;
     double longitude;
+    List<Integer> userPreference;
 
     Intent intent;
 
@@ -53,6 +52,7 @@ public class SearchDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_display);
 
+        getUserPreference();
         intent = getIntent();
         selectedFilter = intent.getIntExtra("selectedFilter", -1);
         latitude = intent.getDoubleExtra("latitude", 37.3387);
@@ -84,7 +84,8 @@ public class SearchDisplayActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
-                            Toast.makeText(getApplicationContext(), "Sort by recommend", Toast.LENGTH_SHORT).show();
+                            sortByRecommend();
+                            locationAdapter.notifyDataSetChanged();
                         }
                     }
                 });
@@ -93,7 +94,6 @@ public class SearchDisplayActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
-                            Toast.makeText(getApplicationContext(), "Sort by distance", Toast.LENGTH_SHORT).show();
                             sortByDistance();
                             locationAdapter.notifyDataSetChanged();
                         }
@@ -104,7 +104,6 @@ public class SearchDisplayActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
-                            Toast.makeText(getApplicationContext(), "Sort by most liked", Toast.LENGTH_SHORT).show();
                             Collections.sort(locationList, Location.locationLikeComparator);
                             locationAdapter.notifyDataSetChanged();
                         }
@@ -121,7 +120,32 @@ public class SearchDisplayActivity extends AppCompatActivity {
      * Implement sorting algorithm based on user's survey, distance, and most liked
      */
     private void sortByRecommend() {
+        Collections.sort(locationList, new Comparator<Location>() {
+            @Override
+            public int compare(Location o1, Location o2) {
+                if (o1.getScore(latitude, longitude, userPreference.get(o1.getCategory())) - o2.getScore(latitude, longitude, userPreference.get(o2.getCategory())) >= 0) {
+                    return -1;
+                }
+                return 1;
+            }
+        });
+    }
 
+    private void getUserPreference() {
+        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                userPreference = user.getPreferences();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void sortByDistance() {

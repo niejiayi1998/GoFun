@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class User {
-    private final String id;
-    private final String name;
-    private final String email;
+    private String id;
+    private String name;
+    private String email;
     private String password;
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
     private List<Integer> preferences;
@@ -18,6 +18,8 @@ public class User {
     private List<Event> joinedEvents;
     // events posted
     private List<Event> postedEvents;
+
+    public User(){}
 
     // ATTENTION: all fields should be added to constructor, inorder to add to firebase
     public User(String id, String name, String email, String password) {

@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="165dp"
     android:layout_gravity="center"
@@ -16,10 +17,10 @@
 
         <ImageView
             android:id="@+id/locationImage"
-            android:layout_marginTop="7dp"
             android:layout_width="140dp"
             android:layout_height="115dp"
             android:layout_gravity="center"
+            android:layout_marginTop="7dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
             app:layout_constraintTop_toTopOf="@+id/map_pin" />
 
         <ImageView
-            android:id="@+id/btn_like"
+            android:id="@+id/iv_like"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginRight="3dp"
@@ -76,7 +77,17 @@
             android:text="80"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btn_like" />
+            app:layout_constraintTop_toTopOf="@id/iv_like" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/iv_like"
+            app:layout_constraintStart_toEndOf="@+id/distance"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteY="142dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

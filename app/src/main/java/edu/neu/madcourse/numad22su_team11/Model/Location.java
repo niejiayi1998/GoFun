@@ -1,7 +1,8 @@
 package edu.neu.madcourse.numad22su_team11.Model;
 
-
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class Location {
     private String name;
@@ -13,10 +14,11 @@ public class Location {
     private String locationId;
     private String address;
     private String description;
+    private List<String> likedBy;
 
     public Location() {}
 
-    public Location(String name, String imgUrl, int category, int numOfLike, double latitude, double longitude, String locationId, String address, String description) {
+    public Location(String name, String imgUrl, int category, int numOfLike, double latitude, double longitude, String locationId, String address, String description, ArrayList<String> likedBy) {
         this.name = name;
         this.imgUrl = imgUrl;
         this.category = category;
@@ -26,6 +28,7 @@ public class Location {
         this.locationId = locationId;
         this.address = address;
         this.description = description;
+        this.likedBy = likedBy;
     }
 
     public String getName() {
@@ -100,11 +103,25 @@ public class Location {
         this.description = description;
     }
 
+    public List<String> getLikedBy() {
+        return likedBy;
+    }
+
+    public void setLikedBy(List<String> likedBy) {
+        this.likedBy = likedBy;
+    }
+
     public double getDistance(double latitude, double longitude) {
         float[] result = new float[1];
         android.location.Location.distanceBetween(latitude, longitude, this.getLatitude(), this.getLongitude(), result);
         double distance = result[0] * 0.000621371;
         return distance;
+    }
+
+    public double getScore(double latitude, double longitude, int isPefer) {
+        double score = 0.00;
+        score = isPefer * 40 - this.getDistance(latitude, longitude) * 0.1 + this.getNumOfLike() * 0.2;
+        return score;
     }
 
     public static Comparator<Location> locationLikeComparator = new Comparator<Location>() {
