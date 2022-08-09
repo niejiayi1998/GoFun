@@ -16,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic"
-        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"/>
 
     <TextView
