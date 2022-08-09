@@ -1,6 +1,7 @@
 package edu.neu.madcourse.numad22su_team11.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.List;
 
+import edu.neu.madcourse.numad22su_team11.LocationDetailActivity;
 import edu.neu.madcourse.numad22su_team11.Model.Event;
 import edu.neu.madcourse.numad22su_team11.R;
 
@@ -43,11 +45,21 @@ public class EventJoinedAdapter extends RecyclerView.Adapter<EventJoinedAdapter.
     @Override
     public void onBindViewHolder(@NonNull EventJoinedAdapter.ViewHolder holder, int position) {
         String eventId = eventList.get(position).getEventId();
+        String locationId = eventList.get(position).getLocationId();
         holder.bindThisData(eventList.get(position));
         holder.btn_leave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 leaveEvent(eventId);
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, LocationDetailActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("locationId", locationId);
+                mContext.startActivity(intent);
             }
         });
     }
