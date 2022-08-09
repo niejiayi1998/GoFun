@@ -10,10 +10,6 @@ public class User {
     private String password;
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
     private List<Integer> preferences;
-    // events joined
-    private List<String> joinedEvents;
-    // events posted
-    private List<String> postedEvents;
 
     public User(){}
 
@@ -24,8 +20,6 @@ public class User {
         this.email = email;
         this.password = password;
         preferences = new ArrayList<>();
-        joinedEvents = new ArrayList<>();
-        postedEvents = new ArrayList<>();
     }
 
     public String getId() {
@@ -56,19 +50,4 @@ public class User {
         this.preferences = preferences;
     }
 
-    public List<String> getJoinedEvents() {
-        return joinedEvents;
-    }
-
-    public void setJoinedEvents(List<String> joinedEvents) {
-        this.joinedEvents = joinedEvents;
-    }
-
-    public List<String> getPostedEvents() {
-        return postedEvents;
-    }
-
-    public void setPostedEvents(List<String> postedEvents) {
-        this.postedEvents = postedEvents;
-    }
 }
