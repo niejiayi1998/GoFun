@@ -59,7 +59,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         }
 
         private void bindThisData (Event eventToBind){
-            Picasso.get().load(eventToBind.getImgUrl()).into(image);
             name.setText(eventToBind.getName());
             time.setText(eventToBind.getTime());
             numberPeopleJoined.setText((eventToBind.getNumPeopleJoined()));
