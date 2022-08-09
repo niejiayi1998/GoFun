@@ -3,12 +3,18 @@ package edu.neu.madcourse.numad22su_team11;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,7 +55,7 @@ import edu.neu.madcourse.numad22su_team11.Model.Location;
 
 public class LocationDetailActivity extends AppCompatActivity {
 
-    private static final String TAG = "TEST";
+    private String CHANNEL_ID = "NUMAD_22SU_Team11";
     private RecyclerView recyclerView;
     private String locationImgUrl;
     private ImageView iv_locationImg;
@@ -90,6 +96,8 @@ public class LocationDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_detail);
+
+        createNotificationChannel();
 
         eventList = new ArrayList<>();
         recyclerView = findViewById(R.id.rv_event_recyclerview);
@@ -214,13 +222,13 @@ public class LocationDetailActivity extends AppCompatActivity {
                 String eventName = et_eventName.getText().toString();
                 String time = year + "/" + month + "/" + day + " " + hour + ":" + minute;
                 long timeStamp = convertToTimestamp(time);
-                Log.d(TAG, time);
                 if (eventName.equals("")) {
                     Toast.makeText(getApplicationContext(), "Event Name cannot be empty!", Toast.LENGTH_SHORT).show();
                 } else if (year == 0 || month == 0 || day == 0) {
                     Toast.makeText(getApplicationContext(), "You have to choose a valid date", Toast.LENGTH_SHORT).show();
                 } else {
                     addEventToDB(eventName, timeStamp);
+                    sendNotification();
                     dialog.dismiss();
                 }
             }
@@ -364,5 +372,33 @@ public class LocationDetailActivity extends AppCompatActivity {
         }
         long timeStamp = date.getTime();
         return timeStamp;
+    }
+
+    public void sendNotification() {
+        Intent intent = new Intent(this, MainSearchActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        Notification.Builder builder = new Notification.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("GoFun")
+                .setContentText("Congratulations on creating your own event! Check more fun here!")
+                .setAutoCancel(true)
+                .setContentIntent(pIntent);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        // // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(0, builder.build());
+    }
+
+    public void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = CHANNEL_ID;
+            String description = "Message From GoFun";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = this.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }
