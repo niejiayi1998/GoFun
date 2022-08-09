@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -31,7 +32,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -42,6 +48,7 @@ import edu.neu.madcourse.numad22su_team11.Model.Location;
 
 public class LocationDetailActivity extends AppCompatActivity {
 
+    private static final String TAG = "TEST";
     private RecyclerView recyclerView;
     private String locationImgUrl;
     private ImageView iv_locationImg;
@@ -56,6 +63,7 @@ public class LocationDetailActivity extends AppCompatActivity {
     private String locationId;
     private List<Event> eventList;
     private List<String> likedBy;
+    private int locationCategory;
     private MaterialCheckBox checkBox;
     private String userid;
 
@@ -81,6 +89,8 @@ public class LocationDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_detail);
+
+        eventList = new ArrayList<>();
         recyclerView = findViewById(R.id.rv_event_recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -103,6 +113,7 @@ public class LocationDetailActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Location location = snapshot.getValue(Location.class);
                 locationName = location.getName();
+                locationCategory = location.getCategory();
                 locationImgUrl = location.getImgUrl();
                 locationAddress = location.getAddress();
                 locationDescription = location.getDescription();
@@ -153,32 +164,28 @@ public class LocationDetailActivity extends AppCompatActivity {
             }
         });
 
-//    tv_locationName.setText(locationName);
-//    tv_locationDescription.setText(locationDescription);
-//    tv_locationAddress.setText(locationAddress);
-//    tv_num_liked.setText(locationLiked);
 
-//        eventDatabaseReference = FirebaseDatabase.getInstance().getReference("Events");
-//        eventDatabaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                eventList.clear();
-//                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                    Event event = dataSnapshot.getValue(Event.class);
-//                    if (!event.getLocationId().equals(locationId)){
-//                        eventList.add(event);
-//                    }
-//                }
-//
-//                eventAdapter = new EventAdapter(getApplicationContext(), eventList);
-//                recyclerView.setAdapter(eventAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        eventDatabaseReference = FirebaseDatabase.getInstance().getReference("Events");
+        eventDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventList.clear();
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Event event = dataSnapshot.getValue(Event.class);
+                    if (event.getLocationId().equals(locationId)){
+                        eventList.add(event);
+                    }
+                }
+
+                eventAdapter = new EventAdapter(getApplicationContext(), eventList);
+                recyclerView.setAdapter(eventAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
@@ -207,8 +214,11 @@ public class LocationDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String eventName = et_eventName.getText().toString();
-                String str = eventName + " " + year + " " + month + " " + day + " " + hour + " " + minute;
-                Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+                String time = year + "/" + month + "/" + day + " " + hour + ":" + minute;
+                long timeStamp = convertToTimestamp(time);
+                Toast.makeText(getApplicationContext(), String.valueOf(timeStamp), Toast.LENGTH_SHORT).show();
+//                Log.d(TAG, String.valueOf(timeStamp));
+                addEventToDB(eventName, timeStamp);
                 dialog.dismiss();
             }
         });
@@ -220,6 +230,25 @@ public class LocationDetailActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+    }
+
+    private void addEventToDB(String eventName, long timeStamp) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Events");
+        List<String> peopleJoined = new ArrayList<>();
+        peopleJoined.add(userid);
+        String eventId = databaseReference.push().getKey();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("name", eventName);
+        hashMap.put("locationId", locationId);
+        hashMap.put("creatorId", userid);
+        hashMap.put("eventId", eventId);
+        hashMap.put("category", locationCategory);
+        hashMap.put("peopleJoined", peopleJoined);
+        hashMap.put("timeStamp", timeStamp);
+
+        databaseReference.child(eventId).setValue(hashMap);
+
     }
 
     private String getTodaysDate() {
@@ -320,5 +349,17 @@ public class LocationDetailActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
         timePickerDialog.setTitle("Select Time");
         timePickerDialog.show();
+    }
+
+    private long convertToTimestamp(String time) {
+        DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault());
+        Date date = null;
+        try {
+            date = formatter.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long timeStamp = date.getTime();
+        return timeStamp;
     }
 }

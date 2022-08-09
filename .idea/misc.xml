@@ -22,7 +22,7 @@
         <entry key="app/src/main/res/layout/create_event_window.xml" value="0.335" />
         <entry key="app/src/main/res/layout/event_create_card_item.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/event_joined_card_item.xml" value="0.20833333333333334" />
-        <entry key="app/src/main/res/layout/event_joining_card_item.xml" value="0.20833333333333334" />
+        <entry key="app/src/main/res/layout/event_joining_card_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_event_create.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/fragment_event_joined.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/location_card_item.xml" value="0.25" />

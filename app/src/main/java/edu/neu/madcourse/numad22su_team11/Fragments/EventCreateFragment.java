@@ -21,14 +21,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import edu.neu.madcourse.numad22su_team11.Adapter.EventAdapter;
+import edu.neu.madcourse.numad22su_team11.Adapter.EventCreateAdapter;
 import edu.neu.madcourse.numad22su_team11.Model.Event;
 import edu.neu.madcourse.numad22su_team11.R;
 
 public class EventCreateFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Event> createEventList;
-    private EventAdapter eventAdapter;
+    private EventCreateAdapter eventAdapter;
 
 
     @Override
@@ -37,24 +37,25 @@ public class EventCreateFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event_create, container, false);
 
+        createEventList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.rv_createEventFrag);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        createEventList = new ArrayList<>();
+        getEvents();
 
         return view;
     }
 
     private void getEvents() {
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        String userid = firebaseUser.getUid();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Events");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 createEventList.clear();
-                String userid = firebaseUser.getUid();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     Event event = dataSnapshot.getValue(Event.class);
 
@@ -63,7 +64,7 @@ public class EventCreateFragment extends Fragment {
                     }
                 }
 
-                eventAdapter = new EventAdapter(getContext(), createEventList);
+                eventAdapter = new EventCreateAdapter(getContext(), createEventList);
                 recyclerView.setAdapter(eventAdapter);
             }
 

@@ -11,9 +11,9 @@ public class User {
     // according to the survey, the indexes represent categories, 0/1 represents chosen or not
     private List<Integer> preferences;
     // events joined
-    private List<Event> joinedEvents;
+    private List<String> joinedEvents;
     // events posted
-    private List<Event> postedEvents;
+    private List<String> postedEvents;
 
     public User(){}
 
@@ -56,19 +56,19 @@ public class User {
         this.preferences = preferences;
     }
 
-    public List<Event> getJoinedEvents() {
+    public List<String> getJoinedEvents() {
         return joinedEvents;
     }
 
-    public void setJoinedEvents(List<Event> joinedEvents) {
+    public void setJoinedEvents(List<String> joinedEvents) {
         this.joinedEvents = joinedEvents;
     }
 
-    public List<Event> getPostedEvents() {
+    public List<String> getPostedEvents() {
         return postedEvents;
     }
 
-    public void setPostedEvents(List<Event> postedEvents) {
+    public void setPostedEvents(List<String> postedEvents) {
         this.postedEvents = postedEvents;
     }
 }

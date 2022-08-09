@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".LocationDetailActivity">
 
-
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -98,7 +97,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/greenback"
         android:fontFamily="sans-serif-condensed-medium"
@@ -114,7 +113,7 @@
         android:id="@+id/bt_create_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="#8BC34A"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Create Event"
@@ -126,6 +125,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/bt_create_event"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

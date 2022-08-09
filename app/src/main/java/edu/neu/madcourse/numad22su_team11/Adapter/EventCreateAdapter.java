@@ -15,25 +15,24 @@ import java.util.List;
 import edu.neu.madcourse.numad22su_team11.Model.Event;
 import edu.neu.madcourse.numad22su_team11.R;
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
-
+public class EventCreateAdapter extends RecyclerView.Adapter<EventCreateAdapter.ViewHolder>{
     private Context mContext;
     private List<Event> eventList;
 
-    public EventAdapter(Context mContext, List<Event> eventList){
+    public EventCreateAdapter(Context mContext, List<Event> eventList){
         this.mContext = mContext;
         this.eventList = eventList;
     }
 
     @NonNull
     @Override
-    public EventAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.event_joining_card_item, parent, false);
-        return new EventAdapter.ViewHolder(view);
+    public EventCreateAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.event_create_card_item, parent, false);
+        return new EventCreateAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EventCreateAdapter.ViewHolder holder, int position) {
         holder.bindThisData(eventList.get(position));
     }
 
