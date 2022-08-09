@@ -214,10 +214,15 @@ public class LocationDetailActivity extends AppCompatActivity {
                 String eventName = et_eventName.getText().toString();
                 String time = year + "/" + month + "/" + day + " " + hour + ":" + minute;
                 long timeStamp = convertToTimestamp(time);
-                Toast.makeText(getApplicationContext(), String.valueOf(timeStamp), Toast.LENGTH_SHORT).show();
-//                Log.d(TAG, String.valueOf(timeStamp));
-                addEventToDB(eventName, timeStamp);
-                dialog.dismiss();
+                Log.d(TAG, time);
+                if (eventName.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Event Name cannot be empty!", Toast.LENGTH_SHORT).show();
+                } else if (year == 0 || month == 0 || day == 0) {
+                    Toast.makeText(getApplicationContext(), "You have to choose a valid date", Toast.LENGTH_SHORT).show();
+                } else {
+                    addEventToDB(eventName, timeStamp);
+                    dialog.dismiss();
+                }
             }
         });
 

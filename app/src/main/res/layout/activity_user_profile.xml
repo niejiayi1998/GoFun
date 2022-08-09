@@ -8,13 +8,13 @@
 
     <ImageView
         android:id="@+id/iv_userImage"
-        android:layout_width="207dp"
-        android:layout_height="109dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/user_profile_img"
+        android:layout_marginTop="5dp"
         android:src="@drawable/user_profile_img"/>
 
     <TextView

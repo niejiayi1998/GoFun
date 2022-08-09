@@ -17,26 +17,28 @@
 
         <ImageView
             android:id="@+id/iv_event_img"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/tv_event_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="3dp"
             android:text="eventName"
-            android:gravity="center"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textAlignment="center"
             android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/iv_event_img"
+            app:layout_constraintEnd_toEndOf="@id/iv_event_img"
             app:layout_constraintTop_toBottomOf="@+id/iv_event_img" />
 
         <TextView
@@ -46,6 +48,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:text="time"
+            android:fontFamily="sans-serif-condensed-medium"
             app:layout_constraintBottom_toTopOf="@+id/tv_num_people_joined"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_event_img"
@@ -67,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:text="#"
+            android:fontFamily="sans-serif-condensed-medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_event_time"
             app:layout_constraintEnd_toStartOf="@+id/text"/>
@@ -76,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="  People already joined"
+            android:fontFamily="sans-serif-condensed-medium"
             app:layout_constraintStart_toEndOf="@id/iv_event_img"
             app:layout_constraintTop_toTopOf="@id/tv_num_people_joined"
             app:layout_constraintEnd_toStartOf="@+id/btn_join"/>
