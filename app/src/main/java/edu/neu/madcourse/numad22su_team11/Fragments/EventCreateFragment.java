@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import edu.neu.madcourse.numad22su_team11.Adapter.EventCreateAdapter;
 import edu.neu.madcourse.numad22su_team11.Model.Event;
@@ -64,6 +65,7 @@ public class EventCreateFragment extends Fragment {
                     }
                 }
 
+                Collections.sort(createEventList, Event.eventTimeNewToOld);
                 eventAdapter = new EventCreateAdapter(getContext(), createEventList);
                 recyclerView.setAdapter(eventAdapter);
             }

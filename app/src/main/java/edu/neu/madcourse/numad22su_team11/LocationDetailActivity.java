@@ -37,6 +37,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -172,11 +173,12 @@ public class LocationDetailActivity extends AppCompatActivity {
                 eventList.clear();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Event event = dataSnapshot.getValue(Event.class);
-                    if (event.getLocationId().equals(locationId)){
+                    if (event.getLocationId().equals(locationId) && !event.isPastEvent()){
                         eventList.add(event);
                     }
                 }
 
+                Collections.sort(eventList, Event.eventTimeOldToNew);
                 eventAdapter = new EventAdapter(getApplicationContext(), eventList);
                 recyclerView.setAdapter(eventAdapter);
             }

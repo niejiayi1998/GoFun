@@ -77,6 +77,10 @@ public class EventCreateAdapter extends RecyclerView.Adapter<EventCreateAdapter.
             name.setText(eventToBind.getName());
             time.setText(eventToBind.convertTimestamp());
             numberPeopleJoined.setText(String.valueOf(eventToBind.getNumPeopleJoined()));
+
+            if (eventToBind.isPastEvent()) {
+                btn_delete.setEnabled(false);
+            }
         }
 
     }

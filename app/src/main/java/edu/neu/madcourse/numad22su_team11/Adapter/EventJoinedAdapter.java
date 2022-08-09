@@ -99,6 +99,10 @@ public class EventJoinedAdapter extends RecyclerView.Adapter<EventJoinedAdapter.
             name.setText(eventToBind.getName());
             time.setText(eventToBind.convertTimestamp());
             numberPeopleJoined.setText(String.valueOf(eventToBind.getNumPeopleJoined()));
+
+            if (eventToBind.isPastEvent()) {
+                btn_leave.setEnabled(false);
+            }
         }
 
     }

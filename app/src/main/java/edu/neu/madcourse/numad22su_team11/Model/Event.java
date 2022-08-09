@@ -3,6 +3,7 @@ package edu.neu.madcourse.numad22su_team11.Model;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -74,5 +75,32 @@ public class Event {
         Date date = new Date(ts.getTime());
         SimpleDateFormat format = new SimpleDateFormat("MMMM dd, yyyy - hh:mm a", Locale.getDefault());
         return format.format(date);
+    }
+
+    public static Comparator<Event> eventTimeOldToNew = new Comparator<Event>() {
+        @Override
+        public int compare(Event o1, Event o2) {
+            if (o1.getTimeStamp() - o2.getTimeStamp() > 0) {
+                return 1;
+            }
+            return -1;
+        }
+    };
+
+    public static Comparator<Event> eventTimeNewToOld = new Comparator<Event>() {
+        @Override
+        public int compare(Event o1, Event o2) {
+            if (o1.getTimeStamp() - o2.getTimeStamp() > 0) {
+                return -1;
+            }
+            return 1;
+        }
+    };
+
+    public boolean isPastEvent() {
+        if (this.getTimeStamp() < System.currentTimeMillis()) {
+            return true;
+        }
+        return false;
     }
 }
