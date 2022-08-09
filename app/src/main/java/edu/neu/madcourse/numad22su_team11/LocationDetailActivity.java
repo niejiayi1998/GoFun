@@ -189,10 +189,6 @@ public class LocationDetailActivity extends AppCompatActivity {
 
     }
 
-    public void onClick (View view) {
-        startActivity(new Intent(LocationDetailActivity.this, UserProfileActivity.class));
-    }
-
     public void createEventDialog(View view) {
         dialogBuilder = new AlertDialog.Builder(this);
         final View createEventView = getLayoutInflater().inflate(R.layout.create_event_window, null);

@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,7 @@ import edu.neu.madcourse.numad22su_team11.Model.User;
 
 public class SearchDisplayActivity extends AppCompatActivity {
 
+    private TextView tv_username;
     private RecyclerView recyclerView;
     private List<Location> locationList;
     private LocationAdapter locationAdapter;
@@ -58,6 +61,8 @@ public class SearchDisplayActivity extends AppCompatActivity {
         latitude = intent.getDoubleExtra("latitude", 37.3387);
         longitude = intent.getDoubleExtra("longitude", -121.8853);
 
+        tv_username = findViewById(R.id.username);
+        setUsername();
 
         recyclerView = findViewById(R.id.rv_locations);
         locationList = new ArrayList<>();
@@ -112,8 +117,30 @@ public class SearchDisplayActivity extends AppCompatActivity {
             }
         });
 
+        tv_username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SearchDisplayActivity.this, UserProfileActivity.class));
+            }
+        });
 
+    }
 
+    private void setUsername() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                tv_username.setText(user.getName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     /**

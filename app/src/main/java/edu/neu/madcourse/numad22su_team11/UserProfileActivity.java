@@ -13,15 +13,28 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 import edu.neu.madcourse.numad22su_team11.Fragments.EventCreateFragment;
 import edu.neu.madcourse.numad22su_team11.Fragments.EventJoinedFragment;
+import edu.neu.madcourse.numad22su_team11.Model.User;
 
 public class UserProfileActivity extends AppCompatActivity {
+
+    FirebaseUser firebaseUser;
+    DatabaseReference databaseReference;
+    private TextView tv_username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +48,23 @@ public class UserProfileActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(new EventJoinedFragment(), "Events Joined");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        tv_username = findViewById(R.id.tv_username);
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                tv_username.setText(user.getName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 
