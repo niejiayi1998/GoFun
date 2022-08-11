@@ -10,10 +10,13 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -195,28 +198,34 @@ public class SearchDisplayActivity extends AppCompatActivity {
     }
 
     private void filterList(int category) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Locations");
-
-        reference.addValueEventListener(new ValueEventListener() {
+        Handler dataThread = new Handler(Looper.getMainLooper());
+        dataThread.post(new Runnable() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                locationList.clear();
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Location location = dataSnapshot.getValue(Location.class);
-                    if (category == -1) {
-                        locationList.add(location);
-                    } else if (location.getCategory() == category) {
-                        locationList.add(location);
+            public void run() {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Locations");
+
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        locationList.clear();
+                        for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                            Location location = dataSnapshot.getValue(Location.class);
+                            if (category == -1) {
+                                locationList.add(location);
+                            } else if (location.getCategory() == category) {
+                                locationList.add(location);
+                            }
+                        }
+                        locationAdapter = new LocationAdapter(getApplicationContext(), locationList, latitude, longitude);
+                        recyclerView.setAdapter(locationAdapter);
                     }
-                }
-                locationAdapter = new LocationAdapter(getApplicationContext(), locationList, latitude, longitude);
-                recyclerView.setAdapter(locationAdapter);
-            }
 
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
+                    }
+                });
             }
         });
     }
