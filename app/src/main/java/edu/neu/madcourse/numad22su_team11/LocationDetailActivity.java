@@ -226,6 +226,8 @@ public class LocationDetailActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Event Name cannot be empty!", Toast.LENGTH_SHORT).show();
                 } else if (year == 0 || month == 0 || day == 0) {
                     Toast.makeText(getApplicationContext(), "You have to choose a valid date", Toast.LENGTH_SHORT).show();
+                } else if (timeStamp < System.currentTimeMillis()){
+                    Toast.makeText(getApplicationContext(), "You have to choose a future time", Toast.LENGTH_SHORT).show();
                 } else {
                     addEventToDB(eventName, timeStamp);
                     sendNotification();

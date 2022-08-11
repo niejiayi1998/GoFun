@@ -112,6 +112,31 @@ public class EventJoinedAdapter extends RecyclerView.Adapter<EventJoinedAdapter.
             time.setText(eventToBind.convertTimestamp());
             numberPeopleJoined.setText(String.valueOf(eventToBind.getNumPeopleJoined()));
 
+            int category = eventToBind.getCategory();
+            switch (category) {
+                case 0:
+                    image.setImageResource(R.drawable.hiking);
+                    break;
+                case 1:
+                    image.setImageResource(R.drawable.sports);
+                    break;
+                case 2:
+                    image.setImageResource(R.drawable.amusement_park);
+                    break;
+                case 3:
+                    image.setImageResource(R.drawable.arts);
+                    break;
+                case 4:
+                    image.setImageResource(R.drawable.scenicview);
+                    break;
+                case 5:
+                    image.setImageResource(R.drawable.entertainment);
+                    break;
+                default:
+                    image.setImageResource(R.mipmap.ic_launcher);
+
+            }
+
             if (eventToBind.isPastEvent()) {
                 btn_leave.setEnabled(false);
             }

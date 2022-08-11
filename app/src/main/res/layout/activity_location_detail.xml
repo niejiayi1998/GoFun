@@ -10,7 +10,6 @@
         android:id="@+id/iv_location_img"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/user_profile_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
