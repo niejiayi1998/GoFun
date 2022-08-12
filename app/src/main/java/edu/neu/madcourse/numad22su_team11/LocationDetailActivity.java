@@ -14,6 +14,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -381,12 +382,12 @@ public class LocationDetailActivity extends AppCompatActivity {
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
         Notification.Builder builder = new Notification.Builder(this, CHANNEL_ID)
+                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher_icon_foreground))
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("GoFun")
-                .setContentText("Congratulations on creating your own event! Check more fun here!")
+                .setContentTitle("Congratulations on creating your own event!")
+                .setContentText("Check more fun here!")
                 .setAutoCancel(true)
                 .setContentIntent(pIntent);
-
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         // // notificationId is a unique int for each notification that you must define
         notificationManager.notify(0, builder.build());
