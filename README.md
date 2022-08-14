@@ -5,7 +5,7 @@
 * Kaicheng Jia
 
 ## Demo:
-https://www.youtube.com/watch?v=JWW39N8-lYY&t=282s
+[![GoFun Presentation-Cover](https://user-images.githubusercontent.com/58837611/184555459-fb295586-b550-49a2-847d-7ea19412b4e0.jpg)](https://www.youtube.com/watch?v=JWW39N8-lYY&t=282s)
 
 ### App Introduction:
 GoFun is a social app that can locate fun activities nearby with just one click. 
