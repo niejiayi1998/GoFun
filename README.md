@@ -5,7 +5,7 @@
 * Kaicheng Jia
 
 ## Demo:
-https://www.youtube.com/watch?v=JWW39N8-lYY&t=282s
+[![Demo](https://img.youtube.com/vi/JWW39N8-lYY&t=282s/0.jpg)](https://www.youtube.com/watch?v=JWW39N8-lYY&t=282s)
 
 
 ### App Introduction:
