@@ -15,7 +15,7 @@ Here we provide a platform to group users who have the same interest and allow u
 ## Pages
 
 ### User Login Page
-![Screen Shot 2022-08-13 at 5 15 54 PM](https://user-images.githubusercontent.com/58837611/184517467-f6f0a620-ac22-48ab-81d4-843b50d5fcd0.png)
+<img src="https://user-images.githubusercontent.com/58837611/184517467-f6f0a620-ac22-48ab-81d4-843b50d5fcd0.png" width="50" height="100">
 
 ### User Registration Page
 
