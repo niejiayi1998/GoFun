@@ -5,7 +5,8 @@
 * Kaicheng Jia
 
 ## Demo:
-[![Demo](https://img.youtube.com/vi/JWW39N8-lYY&t=282s/0.jpg)](https://www.youtube.com/watch?v=JWW39N8-lYY&t=282s)
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/JWW39N8-lYY&t=282s/0.jpg)](http://www.youtube.com/watch?v=JWW39N8-lYY&t=282s "Video Title")
+
 
 
 ### App Introduction:
